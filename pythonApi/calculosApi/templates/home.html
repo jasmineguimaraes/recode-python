@@ -1,0 +1,54 @@
+{% extends 'base.html' %} {% block content %}
+
+<br />
+<br />
+<form
+	action="{% url 'calcular' %}"
+	class="row row-cols-lg-auto g-3 align-items-center"
+	method="POST"
+>
+    {% csrf_token %}
+    <div class="col-md-3">
+        <div class="input-group">
+            <input
+                class="form-control mr-sm-4"
+                type="search"
+                placeholder="Digite o primeiro numero"
+                aria-label="Search"
+                name="num1"
+            />
+        </div>
+    </div>
+    <div class="col-md-3">
+        <select
+            class="form-select"
+            id="inlineFormSelectPref"
+            name="operacao"
+        >
+            <option selected value="1">Soma (+)</option>
+            <option value="2">Subtração (-)</option>
+            <option value="3">Multiplicação (*)</option>
+            <option value="4">Divisão (/)</option>
+        </select>
+    </div>
+    <div class="col-md-3">
+        <div class="input-group">
+            <input
+                class="form-control mr-sm-4"
+                type="search"
+                placeholder="Digite o segundo numero"
+                aria-label="Search"
+                name="num2"
+            />
+        </div>
+    </div>
+    <div class="col-sm-3">
+        <button class="btn btn-outline-success" type="submit">
+            Calcular
+        </button>
+    </div>
+</form>
+{% if resultado %}
+<br/><h4>Resultado: {{ resultado }}</h4>
+{% endif %} 
+{% endblock %}
